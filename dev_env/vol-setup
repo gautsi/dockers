@@ -1,0 +1,8 @@
+#! /bin/bash
+
+mkdir ~/dockvol
+sudo addgroup --gid 1222 dockgroup
+sudo chown :1222 ~/dockvol
+chmod 775 ~/dockvol
+chmod g+s ~/dockvol
+sudo adduser gautam dockgroup

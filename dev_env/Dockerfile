@@ -1,4 +1,5 @@
 # from here: https://github.com/AGhost-7/docker-dev/blob/master/tutorial/readme.md
+# and here: https://medium.com/@nielssj/docker-volumes-and-file-system-permissions-772c1aee23ca
 FROM ubuntu:bionic
 
 # This tutorial does not include how to optimize the image size, therefore
@@ -9,10 +10,18 @@ RUN apt-get update
 RUN apt-get install -y sudo
 
 # Feel free to change this to whatever your want
-ENV DOCKER_USER developer
+ENV DOCKER_USER gautam
+
+# make the user group
+RUN addgroup --gid 1222 dockgroup
 
 # Start by creating our passwordless user.
-RUN adduser --disabled-password --gecos '' "$DOCKER_USER"
+RUN adduser \
+  --disabled-password \
+  --gecos "" \
+  # --force-badname \
+  --ingroup dockgroup \
+  "$DOCKER_USER"
 
 # Give root priviledges
 RUN adduser "$DOCKER_USER" sudo
@@ -26,10 +35,10 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER "$DOCKER_USER"
 
 # This will determine where we will start when we enter the container.
-WORKDIR "/home/$DOCKER_USER"
+WORKDIR "/dockvol"
 
 # The sudo message is annoying, so skip it
-RUN touch ~/.sudo_as_admin_successful
+# RUN touch ~/.sudo_as_admin_successful
 
 # We will need this to build c/c++ dependencies. This is common enough
 # in all my various projects that I include it in my base image; there are
@@ -59,7 +68,17 @@ RUN sudo apt-get install -y bash-completion
 RUN sudo apt-get install -y tmux
 
 # python
-RUN sudo apt-get install python3.8
+# RUN sudo apt-get install -y python3.8
 
 # pip
-sudo apt install python3-venv python3-pip
+RUN sudo apt install -y python3-venv python3-pip
+
+# jupyter lab
+RUN pip3 install jupyter
+RUN pip3 install jupyterlab
+
+# add to path
+ENV PATH="~/.local/bin:${PATH}"
+
+# expose a port that jupyter lab can use
+EXPOSE 8888

@@ -1,0 +1,9 @@
+#! /bin/bash
+
+docker run \
+  -it \
+  --rm \
+  --name devcont \
+  -v ~/dockvol:/dockvol \
+  -p 8888:8888 \
+  devim
