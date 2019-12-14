@@ -82,3 +82,9 @@ ENV PATH="~/.local/bin:${PATH}"
 
 # expose a port that jupyter lab can use
 EXPOSE 8888
+
+# django
+RUN pip3 install django
+
+# expose a port for django
+EXPOSE 8000
