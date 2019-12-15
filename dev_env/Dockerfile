@@ -88,3 +88,6 @@ RUN pip3 install django
 
 # expose a port for django
 EXPOSE 8000
+
+# neovim
+RUN sudo apt install neovim -y

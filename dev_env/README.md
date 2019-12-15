@@ -41,4 +41,6 @@ https://medium.com/zeitcode/a-simple-recipe-for-django-development-in-docker-bon
 
 
 ## To do
-- [ ] set up git global info (from file maybe?)
+- [x] set up git global info (from file maybe?)
+  - updated docker run to add the host gitconfig
+- [ ] learn and set up vim

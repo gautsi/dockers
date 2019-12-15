@@ -5,6 +5,7 @@ docker run \
   --rm \
   --name devcont \
   -v ~/dockvol:/dockvol \
+  -v ~/.gitconfig:/etc/gitconfig \
   -p 8888:8888 \
   -p 8000:8000 \
   devim
