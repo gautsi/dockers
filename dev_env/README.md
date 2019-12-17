@@ -42,6 +42,9 @@ https://medium.com/zeitcode/a-simple-recipe-for-django-development-in-docker-bon
 ### Jekyll
 https://jekyllrb.com/docs/installation/ubuntu/
 
+```
+bundle exec jekyll serve --host:0.0.0.0
+```
 
 ## To do
 - [x] set up git global info (from file maybe?)
