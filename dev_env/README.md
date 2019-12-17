@@ -39,6 +39,9 @@ pip3 install Django==3.0
 
 https://medium.com/zeitcode/a-simple-recipe-for-django-development-in-docker-bonus-testing-with-selenium-6a038ec19ba5
 
+### Jekyll
+https://jekyllrb.com/docs/installation/ubuntu/
+
 
 ## To do
 - [x] set up git global info (from file maybe?)

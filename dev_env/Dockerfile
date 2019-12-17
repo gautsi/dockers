@@ -91,3 +91,11 @@ EXPOSE 8000
 
 # neovim
 RUN sudo apt install neovim -y
+
+# jekyll, from https://jekyllrb.com/docs/installation/ubuntu/
+RUN sudo apt-get install -y ruby-full zlib1g-dev 
+ENV GEM_HOME="~/gems"
+ENV PATH="~/gems/bin:$PATH"
+RUN sudo gem install jekyll bundler
+
+
