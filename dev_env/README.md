@@ -42,8 +42,12 @@ https://medium.com/zeitcode/a-simple-recipe-for-django-development-in-docker-bon
 ### Jekyll
 https://jekyllrb.com/docs/installation/ubuntu/
 
+https://bundler.io/v2.0/guides/bundler_docker_guide.html
+
+https://success.docker.com/article/use-a-script-to-initialize-stateful-container-data
+
 ```
-bundle exec jekyll serve --host:0.0.0.0
+bundle exec jekyll serve --host=0.0.0.0
 ```
 
 ## To do

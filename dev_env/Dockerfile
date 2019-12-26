@@ -93,9 +93,14 @@ EXPOSE 8000
 RUN sudo apt install neovim -y
 
 # jekyll, from https://jekyllrb.com/docs/installation/ubuntu/
+# and https://bundler.io/v2.0/guides/bundler_docker_guide.html
 RUN sudo apt-get install -y ruby-full zlib1g-dev 
-ENV GEM_HOME="~/gems"
-ENV PATH="~/gems/bin:$PATH"
-RUN sudo gem install jekyll bundler
 
+ENV GEM_HOME="/usr/local/bundle"
+ENV PATH="$GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH"
+
+RUN sudo gem install jekyll bundler
+COPY Gemfile .
+COPY Gemfile.lock .
+RUN bundle install
 
