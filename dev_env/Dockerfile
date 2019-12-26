@@ -104,3 +104,12 @@ COPY Gemfile .
 COPY Gemfile.lock .
 RUN bundle install
 
+# pre-commit
+RUN pip3 install pre-commit
+
+# link python and pip to python3 and pip3
+RUN sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 0
+RUN sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 0
+
+# pandas
+RUN pip install pandas
