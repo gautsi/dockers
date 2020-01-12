@@ -50,7 +50,29 @@ https://success.docker.com/article/use-a-script-to-initialize-stateful-container
 bundle exec jekyll serve --host=0.0.0.0
 ```
 
+# venv
+
+To make an environment:
+```
+python -m venv my-env
+```
+A good name for the env is .venv
+To activate:
+```
+source my-env/bin/activate
+```
+To deactivate:
+```
+deactivate
+```
+### jupyter + venv
+```
+pip install ipykernel
+ipython kernel install --user --name=projectname
+```
+
 ## To do
 - [x] set up git global info (from file maybe?)
   - updated docker run to add the host gitconfig
 - [ ] learn and set up vim
+- [ ] venv
