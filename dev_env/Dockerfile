@@ -113,3 +113,12 @@ RUN sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 0
 
 # pandas
 RUN pip install pandas
+
+# tzdata: https://stackoverflow.com/questions/44331836/apt-get-install-tzdata-noninteractive
+# https://serverfault.com/questions/949991/how-to-install-tzdata-on-a-ubuntu-docker-image
+RUN sudo ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
+ENV DEBIAN_FRONTEND=noninteractive
+RUN sudo apt-get -y install tzdata
+
+# sphinx
+RUN sudo apt-get install -y python3-sphinx
