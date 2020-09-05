@@ -1,6 +1,6 @@
 # from here: https://github.com/AGhost-7/docker-dev/blob/master/tutorial/readme.md
-# and here: https://medium.com/@nielssj/docker-volumes-and-file-system-permissions-772c1aee23ca
-FROM ubuntu:bionic
+# and here: https:i//medium.com/@nielssj/docker-volumes-and-file-system-permissions-772c1aee23ca
+FROM ubuntu:focal
 
 # This tutorial does not include how to optimize the image size, therefore
 # we won't be placing various commands on a single line.
@@ -68,10 +68,15 @@ RUN sudo apt-get install -y bash-completion
 RUN sudo apt-get install -y tmux
 
 # python
-# RUN sudo apt-get install -y python3.8
+# RUN sudo apt update
+# RUN sudo apt install -y software-properties-common
+# RUN sudo add-apt-repository -y ppa:deadsnakes/ppa
+# RUN sudo apt update
+# RUN sudo apt install -y python3.8
 
 # pip
-RUN sudo apt install -y python3-venv python3-pip
+RUN sudo apt-get install -y python3-venv python3-pip
+# RUN sudo apt install -y python3-distutils
 
 # jupyter lab
 RUN pip3 install jupyter
@@ -90,29 +95,35 @@ RUN pip3 install django
 EXPOSE 8000
 
 # neovim
+# RUN sudo apt-get install -y software-properties-common
+# RUN sudo add-apt-repository ppa:neovim-ppa/stable
+# RUN sudo apt-get update
 RUN sudo apt install neovim -y
 
 # jekyll, from https://jekyllrb.com/docs/installation/ubuntu/
 # and https://bundler.io/v2.0/guides/bundler_docker_guide.html
+# RUN sudo apt-add-repository ppa:brightbox/ruby-ng
+# RUN sudo apt-get update
 RUN sudo apt-get install -y ruby-full zlib1g-dev 
 
 ENV GEM_HOME="/usr/local/bundle"
 ENV PATH="$GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH"
 
+RUN sudo gem update --system
 RUN sudo gem install jekyll bundler
 COPY Gemfile .
 COPY Gemfile.lock .
-RUN bundle install
+RUN sudo bundle install
 
 # pre-commit
 RUN pip3 install pre-commit
 
 # link python and pip to python3 and pip3
-RUN sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 0
-RUN sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 0
+# RUN sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 0
+# RUN sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 0
 
 # pandas
-RUN pip install pandas
+RUN pip3 install pandas
 
 # tzdata: https://stackoverflow.com/questions/44331836/apt-get-install-tzdata-noninteractive
 # https://serverfault.com/questions/949991/how-to-install-tzdata-on-a-ubuntu-docker-image
@@ -122,3 +133,7 @@ RUN sudo apt-get -y install tzdata
 
 # sphinx
 RUN sudo apt-get install -y python3-sphinx
+
+# tqdm for jupyter lab
+RUN sudo apt-get install -y nodejs
+RUN sudo apt-get install -y npm

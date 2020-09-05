@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 docker run \
   -it \
@@ -9,4 +9,5 @@ docker run \
   -p 8888:8888 \
   -p 8000:8000 \
   -p 4000:4000 \
+  --network="host" \
   devim
